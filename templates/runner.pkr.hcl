@@ -30,12 +30,13 @@ source "tart-cli" "tart" {
 build {
   sources = ["source.tart-cli.tart"]
 
-  // re-install the actions runner
+  // install the actions runner service
   provisioner "shell" {
     inline = [
       "cd $HOME/actions-runner",
       "./config.sh --url ${var.runner_url} --token ${var.runner_token}",
-      "./svc.sh install"
+      "echo \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin\" > .path",
+      "./svc.sh install",
     ]
   }
 }
