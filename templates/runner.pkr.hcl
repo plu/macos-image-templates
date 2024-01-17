@@ -33,6 +33,7 @@ build {
   // install the actions runner service
   provisioner "shell" {
     inline = [
+      "brew install mint",
       "cd $HOME/actions-runner",
       "./config.sh --url ${var.runner_url} --token ${var.runner_token}",
       "echo \"/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin\" > .path",
